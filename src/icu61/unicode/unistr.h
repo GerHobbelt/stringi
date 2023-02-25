@@ -1538,7 +1538,7 @@ public:
    * @param target the target buffer for extraction, can be NULL
    *               if targetLength is 0
    * @param targetCapacity the length of the target buffer
-   * @param inv Signature-distinguishing paramater, use US_INV.
+   * @param inv Signature-distinguishing parameter, use US_INV.
    * @return the output string length, not including the terminating NUL
    * @stable ICU 3.2
    */
@@ -3287,7 +3287,7 @@ public:
    *
    * @param src String using only invariant characters.
    * @param length Length of src, or -1 if NUL-terminated.
-   * @param inv Signature-distinguishing paramater, use US_INV.
+   * @param inv Signature-distinguishing parameter, use US_INV.
    *
    * @see US_INV
    * @stable ICU 3.2
