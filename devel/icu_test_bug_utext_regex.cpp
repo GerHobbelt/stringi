@@ -21,7 +21,7 @@ int main() {
    }
    
    status    = U_ZERO_ERROR;
-   RegexMatcher *matcher = new RegexMatcher(str_m, 0, status);
+   icu::RegexMatcher *matcher = new icu::RegexMatcher(str_m, 0, status);
    if (U_FAILURE(status)) {
       printf("2error %s!\n", u_errorName(status));
       return 1;
