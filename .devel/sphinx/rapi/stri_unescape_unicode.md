@@ -2,7 +2,7 @@
 
 ## Description
 
-Un-escapes all known escape sequences
+Un-escapes all known escape sequences.
 
 ## Usage
 
@@ -18,17 +18,15 @@ stri_unescape_unicode(str)
 
 ## Details
 
-Uses <span class="pkg">ICU</span> facilities to un-escape Unicode character sequences.
+Uses <span class="pkg">ICU</span>\'s facilities to un-escape Unicode character sequences.
 
-The following ASCII standard escapes are recognized: `\a`, `\b`, `\t`, `\n`, `\v`, `\?`, `\e`, `\f`, `\r`, `\"`, `\'`, `\\`.
+The following escape sequences are recognized: `\a`, `\b`, `\t`, `\n`, `\v`, `\?`, `\e`, `\f`, `\r`, `\"`, `\'`, `\\`, `\uXXXX` (4 hex digits), `\UXXXXXXXX` (8 hex digits), `\xXX` (1-2 hex digits), `\ooo` (1-3 octal digits), `\cX` (control-X; X is masked with 0x1F). For `\xXX` and `\ooo`, beware of non-valid UTF-8 byte sequences.
 
-Moreover, the function understands the following ones: `\uXXXX` (4 hex digits), `\UXXXXXXXX` (8 hex digits), `\xXX` (1-2 hex digits), `\ooo` (1-3 octal digits), `\cX` (control-X; X is masked with 0x1F). For `\xXX` and `\ooo`, beware of non-valid UTF-8 byte sequences.
-
-Note that some versions of R on Windows cannot handle characters defined with `\UXXXXXXXX`. We are working on that.
+Note that some versions of R on Windows cannot handle characters defined with `\UXXXXXXXX`.
 
 ## Value
 
-Returns a character vector. If an escape sequence is ill-formed, result will be `NA` and a warning will be given.
+Returns a character vector. If an escape sequence is ill-formed, the result will be `NA` and a warning will be given.
 
 ## Author(s)
 

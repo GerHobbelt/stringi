@@ -159,6 +159,11 @@ stri_datetime_symbols('@calendar=persian')
 ```
 
 ```
+## Warning in stri_datetime_symbols("@calendar=persian"): A resource bundle lookup
+## returned a result either from the root or the default locale.
+```
+
+```
 ## $Month
 ##  [1] "Farvardin"   "Ordibehesht" "Khordad"     "Tir"         "Mordad"     
 ##  [6] "Shahrivar"   "Mehr"        "Aban"        "Azar"        "Dey"        
@@ -204,6 +209,11 @@ stri_datetime_symbols('@calendar=indian')
 
 ```r
 stri_datetime_symbols('@calendar=coptic')
+```
+
+```
+## Warning in stri_datetime_symbols("@calendar=coptic"): A resource bundle lookup
+## returned a result either from the root or the default locale.
 ```
 
 ```

@@ -25,22 +25,22 @@ stri_datetime_parse(
 
 ## Arguments
 
-|           |                                                                                                                                                                                                                      |
-|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `time`    | an object of class [`POSIXct`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/DateTimeClasses.html) (`as.POSIXct` will be called on character vectors and objects of class `POSIXlt`, `Date`, and `factor`) |
-| `format`  | character vector, see Details; see also [`stri_datetime_fstr`](stri_datetime_fstr.md)                                                                                                                                |
-| `tz`      | `NULL` or `''` for the default time zone or a single string with a timezone identifier, see [`stri_timezone_get`](stri_timezone_set.md) and [`stri_timezone_list`](stri_timezone_list.md)                            |
-| `locale`  | `NULL` or `''` for the default locale, or a single string with locale identifier; a non-Gregorian calendar may be specified by setting the `@calendar=name` keyword                                                  |
-| `str`     | character vector                                                                                                                                                                                                     |
-| `lenient` | single logical value; should date/time parsing be lenient?                                                                                                                                                           |
+|           |                                                                                                                                                                                                                                                          |
+|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `time`    | an object of class [`POSIXct`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/DateTimeClasses.html) with date-time data to be formatted (`as.POSIXct` will be called on character vectors and objects of class `POSIXlt`, `Date`, and `factor`) |
+| `format`  | character vector, see Details; see also [`stri_datetime_fstr`](stri_datetime_fstr.md)                                                                                                                                                                    |
+| `tz`      | `NULL` or `''` for the default time zone or a single string with a timezone identifier, see [`stri_timezone_get`](stri_timezone_set.md) and [`stri_timezone_list`](stri_timezone_list.md)                                                                |
+| `locale`  | `NULL` or `''` for the default locale, or a single string with locale identifier; a non-Gregorian calendar may be specified by setting the `@calendar=name` keyword                                                                                      |
+| `str`     | character vector with strings to be parsed                                                                                                                                                                                                               |
+| `lenient` | single logical value; should date/time parsing be lenient?                                                                                                                                                                                               |
 
 ## Details
 
 Vectorized over `format` and `time` or `str`.
 
-By default, `stri_datetime_format` (for the sake of compatibility with the [`strftime`](https://stat.ethz.ch/R-manual/R-devel/library/base/help/strftime.html) function) formats a date/time object using the current default time zone.
+When parsing strings, unspecified date-time fields (e.g., seconds where only hours and minutes are given) are based on today\'s midnight in the local time zone (for compatibility with [`strptime`](https://stat.ethz.ch/R-manual/R-devel/library/base/help/strptime.html)).
 
-Unspecified fields (e.g., seconds where only hours and minutes are given) are filled with the ones based on current date and time.
+By default, `stri_datetime_format` (for compatibility with the [`strftime`](https://stat.ethz.ch/R-manual/R-devel/library/base/help/strftime.html) function) formats a date/time object using the current default time zone.
 
 `format` may be one of `DT_STYLE` or `DT_relative_STYLE`, where `DT` is equal to `date`, `time`, or `datetime`, and `STYLE` is equal to `full`, `long`, `medium`, or `short`. This gives a locale-dependent date and/or time format. Note that currently <span class="pkg">ICU</span> does not support `relative` `time` formats, thus this flag is currently ignored in such a context.
 
@@ -189,7 +189,7 @@ stri_datetime_parse(x, 'yyyy-MM-dd')
 ```
 
 ```
-## [1] "2015-02-28 14:58:29 AEDT" NA
+## [1] "2015-02-28 AEDT" NA
 ```
 
 ```r
@@ -197,15 +197,15 @@ stri_datetime_parse(x, 'yyyy-MM-dd', lenient=TRUE)
 ```
 
 ```
-## [1] "2015-02-28 14:58:29 AEDT" "2015-03-01 14:58:29 AEDT"
+## [1] "2015-02-28 AEDT" "2015-03-01 AEDT"
 ```
 
 ```r
-stri_datetime_parse(x %s+% " 00:00:00", "yyyy-MM-dd HH:mm:ss")
+stri_datetime_parse(x %s+% " 17:13", "yyyy-MM-dd HH:mm")
 ```
 
 ```
-## [1] "2015-02-28 00:00:00 AEDT" NA
+## [1] "2015-02-28 17:13:00 AEDT" NA
 ```
 
 ```r
@@ -213,7 +213,7 @@ stri_datetime_parse('19 lipca 2015', 'date_long', locale='pl_PL')
 ```
 
 ```
-## [1] "2015-07-19 14:58:29 AEST"
+## [1] "2015-07-19 AEST"
 ```
 
 ```r
@@ -221,5 +221,5 @@ stri_datetime_format(stri_datetime_now(), 'datetime_relative_medium')
 ```
 
 ```
-## [1] "today, 2:58:29 pm"
+## [1] "today, 5:00:49 pm"
 ```

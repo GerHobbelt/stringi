@@ -22,15 +22,19 @@ The final (optional) element of a locale is a list of keywords together with the
 
 For a list of locales that are recognized by <span class="pkg">ICU</span>, call [`stri_locale_list`](stri_locale_list.md).
 
+Note that in <span class="pkg">stringi</span>, \'C\' is a synonym of \'en_US_POSIX\'.
+
 ## A Note on Default Locales
 
-Each locale-sensitive function in <span class="pkg">stringi</span> selects the current default locale if an empty string or `NULL` is provided as its `locale` argument. Default locales are available to all the functions: they are initially set to be the system locale on that platform, and may be changed with [`stri_locale_set`](stri_locale_set.md), for example, if automatic detection fails to recognize your locale properly.
+Each locale-sensitive function in <span class="pkg">stringi</span> selects the current default locale if an empty string or `NULL` is provided as its `locale` argument. Default locales are available to all the functions; initially, the system locale on that platform is used, but it may be changed by calling [`stri_locale_set`](stri_locale_set.md).
 
-It is suggested that your program should avoid changing the default locale. All locale-sensitive functions may request any desired locale per-call (by specifying the `locale` argument), i.e., without referencing to the default locale. During many tests, however, we did not observe any improper behavior of <span class="pkg">stringi</span> while using a modified default locale.
+Your program should avoid changing the default locale. All locale-sensitive functions may request any desired locale per-call (by specifying the `locale` argument), i.e., without referencing to the default locale. During many tests, however, we did not observe any improper behavior of <span class="pkg">stringi</span> while using a modified default locale.
 
 ## Locale-Sensitive Functions in <span class="pkg">stringi</span>
 
 One of many examples of locale-dependent services is the Collator, which performs a locale-aware string comparison. It is used for string comparing, ordering, sorting, and searching. See [`stri_opts_collator`](stri_opts_collator.md) for the description on how to tune its settings, and its `locale` argument in particular.
+
+When choosing a resource bundle that is not available in the requested locale nor in its more general variants (e.g., \'es_ES\' vs \'es\'), a warning is emitted.
 
 Other locale-sensitive functions include, e.g., [`stri_trans_tolower`](stri_trans_casemap.md) (that does character case mapping).
 

@@ -1,5 +1,5 @@
 /* This file is part of the 'stringi' project.
- * Copyright (c) 2013-2021, Marek Gagolewski <https://www.gagolewski.com>
+ * Copyright (c) 2013-2023, Marek Gagolewski <https://www.gagolewski.com/>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -273,6 +273,14 @@ SEXP stri_wrap(SEXP str, SEXP width, SEXP cost_exponent,
     UErrorCode status = U_ZERO_ERROR;
     briter = BreakIterator::createLineInstance(loc, status);
     STRI__CHECKICUSTATUS_THROW(status, {/* do nothing special on err */})
+
+    // NOTE: this is too invasive, there are very few dedicated brkiters!
+    // if (status == U_USING_DEFAULT_WARNING) {
+    //     UErrorCode status2 = U_ZERO_ERROR;
+    //     const char* valid_locale = briter->getLocaleID(ULOC_VALID_LOCALE, status2);
+    //     if (valid_locale && !strcmp(valid_locale, "root"))
+    //         Rf_warning(ICUError::getICUerrorName(status));
+    // }
 
     R_len_t str_length = LENGTH(str);
     StriContainerUTF8_indexable str_cont(str, str_length);

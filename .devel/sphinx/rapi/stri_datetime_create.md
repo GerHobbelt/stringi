@@ -8,10 +8,10 @@ Constructs date-time objects from numeric representations.
 
 ``` r
 stri_datetime_create(
-  year,
-  month,
-  day,
-  hour = 12L,
+  year = NULL,
+  month = NULL,
+  day = NULL,
+  hour = 0L,
   minute = 0L,
   second = 0,
   lenient = FALSE,
@@ -24,12 +24,12 @@ stri_datetime_create(
 
 |           |                                                                                                                                                             |
 |-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `year`    | integer vector; 0 is 1BC, -1 is 2BC, etc.                                                                                                                   |
-| `month`   | integer vector; months are 1-based                                                                                                                          |
-| `day`     | integer vector                                                                                                                                              |
-| `hour`    | integer vector                                                                                                                                              |
-| `minute`  | integer vector                                                                                                                                              |
-| `second`  | numeric vector; fractional seconds are allowed                                                                                                              |
+| `year`    | integer vector; 0 is 1BCE, -1 is 2BCE, etc.; `NULL` for the current year                                                                                    |
+| `month`   | integer vector; months are 1-based; `NULL` for the current month                                                                                            |
+| `day`     | integer vector; `NULL` for the current day                                                                                                                  |
+| `hour`    | integer vector; `NULL` for the current hour                                                                                                                 |
+| `minute`  | integer vector; `NULL` for the current minute                                                                                                               |
+| `second`  | numeric vector; fractional seconds are allowed; `NULL` for the current seconds (without milliseconds)                                                       |
 | `lenient` | single logical value; should the operation be lenient?                                                                                                      |
 | `tz`      | `NULL` or `''` for the default time zone or a single string with time zone identifier, see [`stri_timezone_list`](stri_timezone_list.md)                    |
 | `locale`  | `NULL` or `''` for default locale, or a single string with locale identifier; a non-Gregorian calendar may be specified by setting `@calendar=name` keyword |
@@ -68,11 +68,11 @@ stri_datetime_create(2015, 12, 31, 23, 59, 59.999)
 ```
 
 ```r
-stri_datetime_create(5775, 8, 1, locale='@calendar=hebrew') # 1 Nisan 5775 -> 2015-03-21
+stri_datetime_create(5775, 8, 1, locale='@calendar=hebrew')  # 1 Nisan 5775 -> 2015-03-21
 ```
 
 ```
-## [1] "2015-03-21 12:00:00 AEDT"
+## [1] "2015-03-21 AEDT"
 ```
 
 ```r
@@ -88,5 +88,13 @@ stri_datetime_create(2015, 02, 29, lenient=TRUE)
 ```
 
 ```
-## [1] "2015-03-01 12:00:00 AEDT"
+## [1] "2015-03-01 AEDT"
+```
+
+```r
+stri_datetime_create(hour=15, minute=59)
+```
+
+```
+## [1] "2023-11-08 15:59:00 AEDT"
 ```

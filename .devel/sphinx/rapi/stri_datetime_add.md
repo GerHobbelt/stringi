@@ -68,7 +68,7 @@ print(x)
 ```
 
 ```
-## [1] "2024-01-05 14:58:29 AEDT"
+## [1] "2024-01-08 17:00:48 AEDT"
 ```
 
 ```r
@@ -76,7 +76,7 @@ stri_datetime_add(x, -2, units='months')
 ```
 
 ```
-## [1] "2023-11-05 14:58:29 AEDT"
+## [1] "2023-11-08 17:00:48 AEDT"
 ```
 
 ```r
@@ -84,7 +84,7 @@ stri_datetime_add(stri_datetime_create(2014, 4, 20), 1, units='years')
 ```
 
 ```
-## [1] "2015-04-20 12:00:00 AEST"
+## [1] "2015-04-20 AEST"
 ```
 
 ```r
@@ -92,7 +92,7 @@ stri_datetime_add(stri_datetime_create(2014, 4, 20), 1, units='years', locale='@
 ```
 
 ```
-## [1] "2015-04-09 12:00:00 AEST"
+## [1] "2015-04-09 AEST"
 ```
 
 ```r
@@ -100,5 +100,5 @@ stri_datetime_add(stri_datetime_create(2016, 1, 31), 1, units='months')
 ```
 
 ```
-## [1] "2016-02-29 12:00:00 AEDT"
+## [1] "2016-02-29 AEDT"
 ```
