@@ -8,8 +8,10 @@ set.seed(123)
 library("tinytest")
 library("stringi")
 library("methods")
+
 # options(encoding="UTF-8")  # e.g., on Windows
 cat(stri_info(short=TRUE), "\n")
+
 testWarnings <- TRUE
 
 if (testWarnings) {
