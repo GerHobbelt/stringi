@@ -1,5 +1,5 @@
 /* This file is part of the 'stringi' project.
- * Copyright (c) 2013-2023, Marek Gagolewski <https://www.gagolewski.com/>
+ * Copyright (c) 2013-2024, Marek Gagolewski <https://www.gagolewski.com/>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -158,10 +158,10 @@ UCollator* stri__ucol_open(SEXP opts_collator)
         UErrorCode status2 = U_ZERO_ERROR;
         const char* valid_locale = ucol_getLocaleByType(col, ULOC_VALID_LOCALE, &status2);
         if (valid_locale && !strcmp(valid_locale, "root"))
-            Rf_warning(ICUError::getICUerrorName(status));
+            Rf_warning("%s", ICUError::getICUerrorName(status));
     }
     // else if (status == U_USING_FALLBACK_WARNING)  // warning on this would be too invasive
-    //    Rf_warning(ICUError::getICUerrorName(status));
+    //    Rf_warning("%s", ICUError::getICUerrorName(status));
 
 
     // set other opts

@@ -1,6 +1,6 @@
 # kate: hl bash
 # autoconf/configure script for stringi <https://stringi.gagolewski.com/>
-# Copyright (c) 2013-2023, Marek Gagolewski <https://www.gagolewski.com/>
+# Copyright (c) 2013-2024, Marek Gagolewski <https://www.gagolewski.com/>
 
 ##### COMPATIBILITY NOTES/CHANGELOG ############################################
 
@@ -258,8 +258,8 @@ else
 fi
 
 if test "x$enable_gcc_pedantic" = "xyes"; then
-    #with_extra_cflags="${with_extra_cflags} -Wall -Wextra -pedantic"
-    with_extra_cxxflags="${with_extra_cxxflags} -Wall -Wextra -pedantic"
+    #with_extra_cflags="${with_extra_cflags} -Wall -Wextra -Wformat=2 -pedantic"
+    with_extra_cxxflags="${with_extra_cxxflags} -Wall -Wextra -Wformat=2 -pedantic"
 fi
 
 

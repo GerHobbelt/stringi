@@ -77,9 +77,9 @@ stri_datetime_fields(stri_datetime_now())
 
 ```
 ##   Year Month Day Hour Minute Second Millisecond WeekOfYear WeekOfMonth
-## 1 2023    11  22    9     19     31         199         48           4
+## 1 2024     5   6   11      1     46          92         19           2
 ##   DayOfYear DayOfWeek Hour12 AmPm Era
-## 1       326         4      9    1   2
+## 1       127         2     11    1   2
 ```
 
 ```r
@@ -88,9 +88,9 @@ stri_datetime_fields(stri_datetime_now(), locale='@calendar=hebrew')
 
 ```
 ##   Year Month Day Hour Minute Second Millisecond WeekOfYear WeekOfMonth
-## 1 5784     3   9    9     19     31         204         11           2
+## 1 5784     8  28   11      1     46          97         35           5
 ##   DayOfYear DayOfWeek Hour12 AmPm Era
-## 1        68         4      9    1   1
+## 1       234         2     11    1   1
 ```
 
 ```r
@@ -100,5 +100,5 @@ stri_datetime_symbols(locale='@calendar=hebrew')$Month[
 ```
 
 ```
-## [1] "Kislev"
+## [1] "Nisan"
 ```
